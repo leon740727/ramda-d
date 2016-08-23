@@ -19,6 +19,8 @@ declare module "ramda" {
     function countBy<T>(f: (i: T) => string, list: T[]): {[field: string]: number};
     function countBy<T>(f: (i: T) => string): (list: T[]) => {[field: string]: number};
     function curry(f: any): any;
+    function equals<T,S>(a: T, b: S): boolean;
+    function equals<T,S>(a: T): (b: S) => boolean;
     function filter<T>(check: (i: T) => boolean, data: T[]): T[];
     function filter<T>(check: (i: T) => boolean): (data: T[]) => T[];
     function flatten<T>(a: T[][]): T[];
@@ -66,6 +68,8 @@ declare module "ramda" {
     function tail(data: string): string;
     function trim(str: string): string;
     function uniq<T>(list: T[]): T[];
+    function without<T>(drops: T[], src: T[]): T[];
+    function without<T>(drops: T[]): (src: T[]) => T[];
     function zip<T,R>(a: T[], b: R[]): [[T, R]];
     function zip<T,R>(a: T[]): (b: R[]) => [[T, R]];
 }
