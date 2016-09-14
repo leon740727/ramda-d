@@ -7,6 +7,8 @@ declare module "ramda" {
     function add(a: number): (b: number) => number;
     function append<T>(i: T, data: T[]): T[];
     function append<T>(i: T): (data: T[]) => T[];
+    function assocPath(path: string[], value: any, obj: {}): {};
+    function assocPath(path: string[], value: any): (obj: {}) => {};
     function compose<T1,T2,T3>(a: (p: T2) => T3, b: (p: T1) => T2): (p: T1) => T3;
     function compose<T1,T2,T3,T4>(a:(p:T3)=>T4, b:(p:T2)=>T3, c:(p:T1)=>T2): (p:T1) => T4;
     function compose<T1,T2,T3,T4,T5>(a:(p:T4)=>T5, b:(p:T3)=>T4, c:(p:T2)=>T3, d:(p:T1)=>T2): (p:T1) => T5;
@@ -30,6 +32,8 @@ declare module "ramda" {
     function groupBy<T>(f: (i:T) => string): (list: T[]) => {[group: string]: T[]};
     function groupWith<T>(cmp: (a:T, b:T) => boolean, list: T[]): T[][];
     function groupWith<T>(cmp: (a:T, b:T) => boolean): (list: T[]) => T[][];
+    function has(field: string, obj: {[field: string]: any}): boolean;
+    function has(field: string): (obj: {[field: string]: any}) => boolean;
     function head<T>(list: T[]): T;
     function head(str: string): string;
     function indexOf<T>(target: T, data: T[]): number;
@@ -44,7 +48,15 @@ declare module "ramda" {
     function map<T, R>(f: (p:T)=>R): (p: T[]) => R[];
     function map<T, R>(f: (p:T)=>R, data: Functor<T>): Functor<R>;
     function map<T, R>(f: (p:T)=>R): (p: Functor<T>) => Functor<R>;
+    function map<T, R>(f: (p:T)=>R, data: {[field: string]: T}): {[field: string]: R};
+    function map<T, R>(f: (p:T)=>R): (data: {[field: string]: T}) => {[field: string]: R};
     function memoize(f: (...args: any[]) => any): (...args: any[]) => any;
+    function merge<T>(ori: {[field: string]: T}, newone: {[field: string]: T}): {[field: string]: T};
+    function merge<T>(ori: {[field: string]: T}): (newone: {[field: string]: T}) => {[field: string]: T};
+    function merge<T>(ori: {[field: number]: T}, newone: {[field: number]: T}): {[field: number]: T};
+    function merge<T>(ori: {[field: number]: T}): (newone: {[field: number]: T}) => {[field: number]: T};
+    function objOf<T>(field: string, value: T): {[field: string]: T};
+    function objOf<T>(field: string): (value: T) => {[field: string]: T};
     function reduce<T>(f: (acc: T, p: T) => T, init: T, data: T[]): T;
     function reduce<T>(f: (acc: T, p: T) => T, init: T): (data: T[]) => T;
     function replace(re: any, to: string, data: string): string;
@@ -66,8 +78,11 @@ declare module "ramda" {
     function takeWhile<T>(test: (a: T) => boolean): (list: T[]) => T[];
     function tail<T>(data: T[]): T[];
     function tail(data: string): string;
+    function toPairs<T>(obj: {[field: string]: T}): [[string, T]];
     function trim(str: string): string;
     function uniq<T>(list: T[]): T[];
+    function values<T>(obj: {[field: string]: T}): T[];
+    function values<T>(obj: {[field: number]: T}): T[];
     function without<T>(drops: T[], src: T[]): T[];
     function without<T>(drops: T[]): (src: T[]) => T[];
     function zip<T,R>(a: T[], b: R[]): [[T, R]];
