@@ -38,6 +38,8 @@ declare module "ramda" {
     function head(str: string): string;
     function indexOf<T>(target: T, data: T[]): number;
     function indexOf<T>(target: T): (data: T[]) => number;
+    function intersection<T>(list1: T[], list2: T[]): T[];
+    function intersection<T>(list1: T[]): (list2: T[]) => T[];
     function intersperse<T>(separator: T, list: T[]): T[];
     function intersperse<T>(separator: T) : (list: T[]) => T[];
     function join(sep: string, data: string[]): string;
